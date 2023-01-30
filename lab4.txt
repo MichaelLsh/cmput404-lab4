@@ -5,7 +5,7 @@ Question 2: After starting a brand new Django application and running the runser
 - A rocket gif and "The install worked successfully! Congratulations!"
 
 Question 3: After creating the first view within polls, what does the browser show you when navigating to / and to /polls respectively?
-- 
+- At localhost:8000/ -> Page not found (404); At http://localhost:8000/polls/ -> Hello, world. You're at the polls index.
 
 Question 4: What is a Django migration and why do we need them?
 - 
