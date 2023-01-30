@@ -8,7 +8,8 @@ Question 3: After creating the first view within polls, what does the browser sh
 - At localhost:8000/ -> Page not found (404); At http://localhost:8000/polls/ -> Hello, world. You're at the polls index.
 
 Question 4: What is a Django migration and why do we need them?
-- 
+- Migrations are Django's way of propagating changes you make to your models (adding a field, deleting a model, etc.) into your database schema.
+- Migrations are helpful because they allow database schemas to evolve as requirements change. They help developers plan, validate, and safely apply schema changes to their environments.
 
 Question 5: What do you see after you log into the Django adminstration site? From a high levle, how do you get custom models to appear in the Django admin page?
 - 
