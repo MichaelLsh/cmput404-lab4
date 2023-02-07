@@ -16,6 +16,10 @@ from django.template import loader
 
 from .models import Choice, Question
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import QuestionSerializer
+
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
@@ -53,7 +57,28 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
-    
+   
+# write some API views using the new Serializer class
+# wrap the view so that only HTTP methods that are listed in the decorator will get executed. 
+@api_view(['GET'])
+def get_questions(request):
+    """
+    Get the list of questions on our website
+    """
+    questions = Question.objects.all()
+    serializer = QuestionSerializer(questions, many=True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def update_question(request, pk):
+    """
+    Get the list of questions on our website
+    """
+    questions = Question.objects.get(id=pk)
+    serializer = QuestionSerializer(questions, data=request.data, partial=True)
+    if serializer.is_valid():
+        return Response(serializer.data)
+    return Response(status=400, data=serializer.errors)
 
 # def index(request):
 #     # lastest_question_list = Question.objects.order_by('-pub_date')[:5]
